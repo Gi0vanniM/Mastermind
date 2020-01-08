@@ -1,69 +1,64 @@
 
 var attempts = 0;
+var loc = 0;
 var input = [];
 // var answer = Array.from(words[0].toUpperCase());
 var answer = [];
 
+// rood, blauw, groen, orangje, geel, bruin, zwart, wit
+
+// CREATE DIVS
+for (var i = 9; i >= 0; i--) {
+    for (var e = 0; e < 4; e++) {
+        var currentScene = document.createElement("div");
+        currentScene.id = i + "-" + e;
+        currentScene.className = "node";
+        // document.body.appendChild(currentScene);
+        document.getElementById("attempts").appendChild(currentScene);
+        // currentScene.innerHTML = i + "-" + e;
+    }
+}
 
 function start() {
     attempts = 0;
 
-    for (var row = 0; row < 5; row++) {
-        for (var col = 0; col < 5; col++) {
-            document.getElementById(row + "-" + col).innerHTML = "";
-            document.getElementById(row + "-" + col).className = "letter";
-        }
-    }
-
-    firstLetter();
 }
 
 function check() {
-    input = Array.from(document.getElementById("input-box").value.toUpperCase());
+
     if (input.length == 5) {
 
         if (input.toString() == answer.toString()) {
             alert("Wow je hebt het geraden! Episch!");
         }
 
-        for (var i = 0; i < 5; i++) {
-            if (answer[i] == input[i]) {
-                var id = attempts + "-" + i;
-                document.getElementById(id).className += " green";
-            }
+        // check answer
 
-            else if (answer.includes(input[i])) {
-                var id = attempts + "-" + i;
-                document.getElementById(id).className += " yellow";
-            } else {
-                var id = attempts + "-" + i;
-                document.getElementById(id).className = "letter";
-            }
-        }
-        writeLetter(input);
-        if (attempts == 4) {
-            alert("Helaas je hebt het word niet geraden.")
+        putInColors(input);
+        if (attempts == 9) {
+            alert("Helaas je hebt de code niet geraden.")
         }
         attempts++;
 
     } else {
-        alert("Input is te klein of te groot. Het moet altijd 5 letters zijn.")
+        alert("")
     }
 }
 
-function writeLetter(putin) {
+function inputColor(color) {
+    document.getElementById(attempts + "-" + loc).style.backgroundColor = color;
+    loc++;
 
-    for (var i = 0; i < 5; i++) {
-        var id = attempts + "-" + i;
-        // console.log(id);
-        document.getElementById(id).innerHTML = putin[i];
+    if (loc == 4) {
+        // next row
+        loc = 0;
+        if (attempts == 9) {
+            // fail
+        }
+        else {
+            attempts++;
+        }
     }
-
-}
-
-function firstLetter() {
-    document.getElementById("0-0").innerHTML = answer[0];
-    document.getElementById("0-0").className += " green";
 }
 
 function getRandom(min, max) {
