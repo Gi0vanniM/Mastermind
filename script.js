@@ -4,18 +4,22 @@ var loc = 0;
 var input = [];
 // var answer = Array.from(words[0].toUpperCase());
 var answer = [];
+var selectedColor = null;
 
 // rood, blauw, groen, orangje, geel, bruin, zwart, wit
 
 // CREATE DIVS
-for (var i = 9; i >= 0; i--) {
+for (var i = 11; i >= 0; i--) {
     for (var e = 0; e < 4; e++) {
-        var currentScene = document.createElement("div");
-        currentScene.id = i + "-" + e;
-        currentScene.className = "node";
-        // document.body.appendChild(currentScene);
-        document.getElementById("attempts").appendChild(currentScene);
-        // currentScene.innerHTML = i + "-" + e;
+        var cell = document.createElement("button");
+        var cellID = i.toString() + "-" + e.toString();
+        cell.id = cellID;
+        cell.className = "node";
+        // cell.onclick = "inputColor(" + cellID + ");";
+        cell.setAttribute("onclick", "inputColor('" + cellID + "');");
+        // document.body.appendChild(cell);
+        document.getElementById("attempts").appendChild(cell);
+        // cell.innerHTML = i + "-" + e;
     }
 }
 
@@ -35,7 +39,7 @@ function check() {
         // check answer
 
         putInColors(input);
-        if (attempts == 9) {
+        if (attempts == 11) {
             alert("Helaas je hebt de code niet geraden.")
         }
         attempts++;
@@ -45,20 +49,28 @@ function check() {
     }
 }
 
-function inputColor(color) {
-    document.getElementById(attempts + "-" + loc).style.backgroundColor = color;
-    loc++;
+function selectColor(col) {
+    selectedColor = col;
+    console.log("selected color: " + col);
+}
 
-    if (loc == 4) {
-        // next row
-        loc = 0;
-        if (attempts == 9) {
-            // fail
-        }
-        else {
-            attempts++;
-        }
-    }
+function inputColor(location) {
+    console.log(location.toString());
+    document.getElementById(location).style.backgroundColor = selectedColor;
+
+    // loc++;
+    //
+    // if (loc == 4) {
+    //     // next row
+    //     loc = 0;
+    //     if (attempts == 11) {
+    //         // fail
+    //         attempts = 0;
+    //     }
+    //     else {
+    //         attempts++;
+    //     }
+    // }
 }
 
 function getRandom(min, max) {
