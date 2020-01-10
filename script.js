@@ -21,6 +21,16 @@ for (var i = 11; i >= 0; i--) {
         document.getElementById("attempts").appendChild(cell);
         // cell.innerHTML = i + "-" + e;
     }
+    var pins = document.createElement("div");
+    pins.id = "pins-" + i;
+    pins.className = "pins";
+    document.getElementById("attempts").appendChild(pins);
+    for (var e = 0; e < 4; e++) {
+        var pin = document.createElement("div");
+        pin.id = "pin-" + i + "-" + e;
+        pin.className = "pin";
+        document.getElementById("pins-" + i).appendChild(pin);
+    }
 }
 
 function start() {

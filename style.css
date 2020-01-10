@@ -1,9 +1,12 @@
 
+html {
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    margin: 0;
+    margin: 10px;
     background-color: darkgray;
 }
 
@@ -15,13 +18,13 @@ body {
 
 #attempts {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(12, 50px);
+    grid-template-columns: repeat(5, 5ch);
+    grid-template-rows: repeat(12, 5ch);
     column-gap: 1px;
     row-gap: 1px;
     /* border: 1px solid black; */
     margin: auto;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
 }
 
@@ -34,13 +37,13 @@ body {
 
 #buttons {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(2, 50px);
+    grid-template-columns: repeat(4, 5ch);
+    grid-template-rows: repeat(2, 5ch);
     column-gap: 1px;
     row-gap: 1px;
     /* border: 1px solid black; */
     margin: auto;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
 }
 
@@ -50,4 +53,15 @@ body {
 }
 .button:hover {
     border: 2px solid dimgray;
+}
+.pins {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+}
+.pin {
+    background-color: gray;
+    border: 2px solid black;
+    /* display: flex; */
+    border-radius: 50%;
 }
